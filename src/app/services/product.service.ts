@@ -13,8 +13,12 @@ export class ProductService {
   // inject httpCLeint angular injects it for us
   constructor(private httpClient: HttpClient ) { }
 
-  getProductList(): Observable<Product[]> {
-    return this.httpClient.get<GetResponse>(this.baseUrl).pipe(
+  getProductList(theCategoryId:number): Observable<Product[]> {
+
+    // need to build url on category id
+    const searchUrl = `${this.baseUrl}/search/findByCategoryId?id=${theCategoryId}`
+
+    return this.httpClient.get<GetResponse>(searchUrl).pipe(
       map(response => response._embedded.products)
     )
   }
