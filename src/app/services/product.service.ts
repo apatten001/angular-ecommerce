@@ -2,13 +2,17 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { Product } from '../common/product';
+import { ProductCategory } from '../common/product-category';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class ProductService {
 
+
   private baseUrl = 'http://localhost:8080/api/products'
+  private categoryUrl = "http://localhost:8080/api/product-category"
 
   // inject httpCLeint angular injects it for us
   constructor(private httpClient: HttpClient ) { }
@@ -18,16 +22,30 @@ export class ProductService {
     // need to build url on category id
     const searchUrl = `${this.baseUrl}/search/findByCategoryId?id=${theCategoryId}`
 
-    return this.httpClient.get<GetResponse>(searchUrl).pipe(
+    return this.httpClient.get<GetResponseProducts>(searchUrl).pipe(
       map(response => response._embedded.products)
     )
+  }
+
+  getProductCategories(): Observable<ProductCategory[]>{
+
+    return this.httpClient.get<GetResponseProductCategory>(this.categoryUrl).pipe(
+      map(response => response._embedded.productCategory)
+    )
+    
   }
 
 }
 
 // unwraps the json from the spring data rest _embedded entry
-interface GetResponse{
+interface GetResponseProducts{
   _embedded:{
     products: Product[];
+  }
+}
+
+interface GetResponseProductCategory{
+  _embedded:{
+    productCategory: ProductCategory[];
   }
 }
