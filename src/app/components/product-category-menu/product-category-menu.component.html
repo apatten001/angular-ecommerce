@@ -1,1 +1,13 @@
-<p>product-category-menu works!</p>
+<div class="menu-sidebar-content js-scrollbar1">
+    <nav class="navbar-sidebar">
+        <ul class="list-unstyled navbar-list">
+
+            <li *ngFor="let tempProductCat of productCategories">
+                <!--this is the link to category 1 which is books link active is custom style.css-->
+                <a routerLink="/category/{{tempProductCat.id}}" routerLinkActive="active-link">
+                    {{tempProductCat.categoryName}}</a>
+            </li>
+        
+        </ul>
+    </nav>
+</div>

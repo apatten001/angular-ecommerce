@@ -3,15 +3,22 @@
         <div class="container-fluid">
             <div class="row">
                 <!--Loop over the collection of products-->
-            <div *ngFor="let product of products" class="col-md-3">
-                <div class="product-box">
-                    <img src="{{product.imageUrl}}" class="img-responsive">
-                    <h1>{{product.name}}</h1>
-                    <div class="price">{{product.unitPrice | currency:"USD"}}</div>
-                    <a href="#" class="primary-btn">Add to cart</a>
+                <div *ngFor="let product of products" class="col-md-3">
+                    <div class="product-box">
+                        <img src="{{product.imageUrl}}" class="img-responsive">
+                        <h1>{{product.name}}</h1>
+                        <div class="price">{{product.unitPrice | currency:"USD"}}</div>
+                        <a href="#" class="primary-btn">Add to cart</a>
+                    </div>
+
                 </div>
 
-            </div>
+                <!--if products empty display empty message-->
+                <!--Safe navigation operater is (?) guards againsts
+                     null and undefined values in the property path  -->
+                <div *ngIf="products?.length ==0" class="alert alert-warning col-md-12" role="alert">
+                    No products found.
+                </div>
 
             </div>
 

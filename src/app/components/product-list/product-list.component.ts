@@ -10,8 +10,9 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class ProductListComponent implements OnInit {
 
-  products: Product[] | undefined;
-  currentCategoryId: number | undefined;
+  products: Product[];
+  currentCategoryId: number;
+  searchMode: boolean;
 
   // inject a product service into this product list component
   // activated route is needed for accessing route parameters
@@ -26,6 +27,29 @@ export class ProductListComponent implements OnInit {
   }
 
   listProducts(){
+    this.searchMode = this.route.snapshot.paramMap.has('keyword');
+    console.log(this.searchMode)
+
+    if (this.searchMode){
+      this.handleSearchProducts();
+    }else{
+    this.handleListProducts();
+    }
+  }
+
+  handleSearchProducts(){
+    // get the heywoord that the user passed in
+    const keyword: string = this.route.snapshot.paramMap.get('keyword');
+
+    // now search for products using keyword
+    this.productService.searchProducts(keyword).subscribe(
+      data => {
+        this.products = data;
+      }
+    )
+  }
+
+  handleListProducts(){
     // check if the id parameter is available
     //route - use the activated route
     // snapshot is the state of the route of the given moment and time
@@ -36,11 +60,13 @@ export class ProductListComponent implements OnInit {
       this.currentCategoryId = +this.route.snapshot.paramMap.get("id");
     }
     else{
+      
       this.currentCategoryId =1;
     }
 
     this.productService.getProductList(this.currentCategoryId).subscribe(
       data => this.products = data);
+
   }
 
 }
