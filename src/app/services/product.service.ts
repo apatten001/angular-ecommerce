@@ -18,6 +18,26 @@ export class ProductService {
   // inject httpCLeint angular injects it for us
   constructor(private httpClient: HttpClient ) { }
 
+  getProduct(theProductId:number): Observable<Product> {
+
+    // need to build url on category id
+    const productUrl = `${this.baseUrl}/${theProductId}`
+
+    return this.httpClient.get<Product>(productUrl);
+    
+  }
+
+  getProductListPaginate(thePage: number, 
+                        thePageSize: number, 
+                        theCategoryId:number): Observable<GetResponseProducts> {
+
+    // need to build url on category id, page and size
+    const searchUrl = `${this.baseUrl}/search/findByCategoryId?id=${theCategoryId}`
+                          +`&page=${thePage}&size=${thePageSize}`;
+    return this.httpClient.get<GetResponseProducts>(searchUrl);
+    
+  }
+
   getProductList(theCategoryId:number): Observable<Product[]> {
 
     // need to build url on category id
@@ -56,10 +76,19 @@ interface GetResponseProducts{
   _embedded:{
     products: Product[];
   }
+  page:{
+    size:number,
+    totalElements: number,
+    totalPages: number, 
+    number:number
+
+  }
 }
 
 interface GetResponseProductCategory{
   _embedded:{
     productCategory: ProductCategory[];
   }
+
 }
+
