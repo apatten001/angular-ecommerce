@@ -18,6 +18,8 @@ export class ProductListComponent implements OnInit {
   thePageNumber: number =1;
   thePageSize:number = 5;
   theTotalElements:number = 0;
+
+  previousKeyword: string = null;
   
 
   // inject a product service into this product list component
@@ -44,15 +46,25 @@ export class ProductListComponent implements OnInit {
   }
 
   handleSearchProducts(){
+
+
     // get the heywoord that the user passed in
     const keyword: string = this.route.snapshot.paramMap.get('keyword');
 
+    // if we have a different keyword than previous 
+    // then set thePageNumber to 1
+
+    if (this.previousKeyword != keyword){
+      this.thePageNumber =1;
+    }
+
+    this.previousKeyword = keyword;
+    console.log(`keyword=${keyword}, thePageNumber=${this.thePageNumber}`)
+
     // now search for products using keyword
-    this.productService.searchProducts(keyword).subscribe(
-      data => {
-        this.products = data;
-      }
-    )
+    this.productService.searchProductsPaginate(this.thePageNumber-1,
+                                              this.thePageSize,
+                                              keyword).subscribe(this.processResult())
   }
 
   handleListProducts(){
