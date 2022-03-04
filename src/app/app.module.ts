@@ -14,6 +14,7 @@ import { ProductDetailsComponent } from './components/product-details/product-de
 // for pagination support 
 import {  NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CartStatusComponent } from './components/cart-status/cart-status.component';
+import { CartDetailsComponent } from './components/cart-details/cart-details.component';
 
 
 
@@ -37,6 +38,7 @@ const routes: Routes = [
     SearchComponent,
     ProductDetailsComponent,
     CartStatusComponent,
+    CartDetailsComponent,
     
     
   ],
