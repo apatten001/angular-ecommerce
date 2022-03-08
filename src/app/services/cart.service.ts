@@ -57,7 +57,7 @@ export class CartService {
 
     }
 
-    // publish the new values... all subscribers will receive the new data
+    // publish the new values... all subscribers will receive the new data reminds of microservices
     // .next() publishes or sends the event to all subscribers
     this.totalPrice.next(totalPriceValue);
     this.totalQuantity.next(totalQuantityValue)
