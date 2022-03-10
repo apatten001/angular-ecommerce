@@ -18,7 +18,7 @@ export class CartService {
   storage: Storage = localStorage;
 
   // reference to web browser session storage does not survive browser restarts
-  //storage: Storage = localStorage;
+  // storage: Storage = localStorage;
 
   constructor() { 
     // read the data from storage
