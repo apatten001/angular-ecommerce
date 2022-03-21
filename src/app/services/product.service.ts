@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Product } from '../common/product';
 import { ProductCategory } from '../common/product-category';
 
@@ -12,8 +13,8 @@ export class ProductService {
 
 
 
-  private baseUrl = 'http://localhost:8080/api/products'
-  private categoryUrl = "http://localhost:8080/api/product-category"
+  private baseUrl = environment.luv2shopApiUrl + '/products'
+  private categoryUrl = environment.luv2shopApiUrl + "/product-category"
 
   // inject httpCLeint angular injects it for us
   constructor(private httpClient: HttpClient) { }
