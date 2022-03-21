@@ -214,6 +214,7 @@ section{
 .section-content-p30{
     padding:0 30px
 }
+
  
 .au-input-xl{
     min-width:500px
@@ -976,8 +977,11 @@ footer ul li{
         color:#205b8d;
         margin-left:15px
     }
+    
+
     .footer-pagination{
-        text-align:center
+        text-align:center;
+        
     }
     .product-box{
         text-align:centerg

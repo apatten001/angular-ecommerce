@@ -1,11 +1,97 @@
 <div class="main-content">
+    <div class="section content section-content-p30">
+        <div class="container-fluid">
+            <div class="row">
+                <h1>Member's discount</h1>
 
-    <div align="center" class="alert alert-warning col-md-12" role="alert">
-        <h3>Members Special</h3>
+                <div *ngFor="let product of products" class="col-md-3 mt-2">
+                    
 
-        <p>Thank you for being a Member.</p>
+                    <div class="card mb-3">
+                        <a routerLink="/products/{{product.id}}">
+                            <img src="{{product.imageUrl}}" class="card-img-top img-responsive" alt="...">
+                        </a>
 
-        <p>Member discounts are coming soon</p>
-        
+                        <div class="card-body">
+                            <h5 class="card-title">{{product.name}}</h5>
+                            <p class="card-text text-truncate">{{product.description}}
+                            </p>
+                            <div class="price " style="text-decoration: line-through">{{(product.unitPrice )| currency:"USD" }}</div>
+                            <div class="price" style="color: red;">{{(product.unitPrice * .80)| currency:"USD"}}</div>
+                            <a (click)="addToCart(product)" class="btn btn-primary">Add To Cart</a>
+                        </div>
+                    </div>
+                
+                </div>
+
+                <!--Loop over the collection of products-->
+                <!--
+                <div *ngFor="let product of products" class="col-md-3">
+                    <div class="product-box">
+
+                        <a routerLink="/products/{{product.id}}">
+                            <img src="{{product.imageUrl}}" class="img-responsive">
+                        </a>
+
+                        <a routerLink="/products/{{product.id}}">
+                            <h1>{{product.name}}</h1>
+                        </a>
+
+
+                        <div class="price">{{product.unitPrice | currency:"USD"}}</div>
+                        <button (click)="addToCart(product)" class="btn btn-primary btn-sm">Add to cart</button>
+                    </div>
+
+                </div>
+                -->
+
+
+
+                <!--if products empty display empty message-->
+                <!--Safe navigation operater is (?) guards againsts
+                     null and undefined values in the property path  -->
+                <div *ngIf="products?.length ==0" class="alert alert-warning col-md-12" role="alert">
+                    No products found.
+                </div>
+
+            </div>
+
+            <!--begin footer-->
+            <!--for pagination from ng-bootstrap-->
+            <div class="footer-pagination">
+                <div class="row">
+                    <div class="col-md-6"></div>
+                    <div class="row">
+                        <div class="col-md-9" style="padding-left: 30%">
+                            <ngb-pagination [(page)]="thePageNumber" [pageSize]="thePageSize"
+                                [collectionSize]="theTotalElements" [maxSize]="5" [boundaryLinks]="true"
+                                (pageChange)="listProducts()">
+
+                            </ngb-pagination>
+
+                        </div>
+                        <div class="col-md-3 mt-2" style="text-align: right;">
+                            <span class="mr-2">Page Size</span>
+                            <select (change)="updatePageSize($any($event.target).value)">
+                                <option>2</option>
+                                <option selected="true">5</option>
+                                <option>10</option>
+                                <option>20</option>
+                                <option>50</option>
+                            </select>
+                        </div>
+
+
+                    </div>
+
+
+
+                </div>
+            </div>
+            <!--end footer-->
+
+        </div>
+
     </div>
+
 </div>
