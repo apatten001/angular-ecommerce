@@ -35,6 +35,8 @@ export class ProductService {
     // need to build url on category id, page and size
     const searchUrl = `${this.baseUrl}/search/findByCategoryId?id=${theCategoryId}`
       + `&page=${thePage}&size=${thePageSize}`;
+
+    console.log(`Getting products from - ${searchUrl}`);
     return this.httpClient.get<GetResponseProducts>(searchUrl);
 
   }
@@ -70,6 +72,8 @@ export class ProductService {
     // need to build url on keyword, page and size
     const searchUrl = `${this.baseUrl}/search/findByNameContaining?name=${keyword}`
       + `&page=${thePage}&size=${thePageSize}`;
+
+
     return this.httpClient.get<GetResponseProducts>(searchUrl);
 
   }
