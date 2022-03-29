@@ -40,6 +40,6 @@ export class AuthInterceptorService implements HttpInterceptor{
         }
       );
     }
-    return next.handle(request).toPromise();
+    return lastValueFrom(next.handle(request));
   }
 }
