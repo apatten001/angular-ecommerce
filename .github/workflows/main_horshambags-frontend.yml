@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: 'Horshambags-frontend'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_6C25D94FF5374531972B6ED07ECBF0E3 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D27210C3F4ED4EBD9BA87A13189B799A }}
           package: .
