@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  luv2shopApiUrl: 'https://horshambags-backend.azurewebsites.net/api'
 };
