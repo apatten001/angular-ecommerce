@@ -1,27 +1,41 @@
-.security-btn {
+/*
+copy from styles.css -> .au-btn.submit
+Rename as .security-btn
+change border to 10px 
+*/
+
+.security-btn{
     position:relative;
     right:0;
-    min-width:85px;
+    min-width:95px;
     color:#fff;
-    border:10px solid #205b8d;
+    border: 10px solid #f1a77d;
     -webkit-border-radius:3px;
     -moz-border-radius:3px;
     border-radius:43px;
-    background:#205b8d
+    background: #f1a77d
 }
 
 
-.login-status-header {
+/*
+copy from styles.css -> form-header
+*/
+
+.login-status-header{
     display:-webkit-box;
     display:-webkit-flex;
     display:-moz-box;
     display:-ms-flexbox;
     display:flex
 }
+/*
+copy from styles.css -> .au-import
+*/
 
-.login-status-user-info {
+.login-status-user-info{
     line-height:43px;
     border:1px;
+
     padding:0 17px;
     -webkit-border-radius:3px;
     -moz-border-radius:3px;
