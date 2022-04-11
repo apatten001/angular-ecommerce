@@ -16,7 +16,7 @@
                             <div class="price">{{product.unitPrice | currency:"USD"}}</div>
                             <div class="price">{{ product.unitsInStock }} in Stock</div>
 
-                        <button *ngIf="product.unitsInStock >0 " (click)="addToCart(product)" class="btn primary-btn btn-sm">Add to cart</button>
+                        <a *ngIf="product.unitsInStock >0 " (click)="addToCart(product)" class="btn primary-btn btn-sm">Add to cart</a>
                         <button *ngIf="product.unitsInStock == 0" class="btn btn-secondary btn-sm" disabled>Out of stock</button>
                         </div>
                     </div>
