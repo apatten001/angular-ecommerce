@@ -39,6 +39,9 @@ export class LoginStatusComponent implements OnInit {
           // stores the email in browser storage
           this.storage.setItem('userEmail', JSON.stringify(theEmail));
 
+
+
+
         }
       )
     }
